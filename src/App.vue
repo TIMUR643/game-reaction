@@ -21,6 +21,7 @@
           <v-tab to="/play">Игра</v-tab>
           <v-tab to="/check">Проверка</v-tab>
           <v-tab to="/about">Инструкция</v-tab>
+          
         </v-tabs>
       </template>
     </v-app-bar>
@@ -57,12 +58,15 @@ export default {
     this.connection = new WebSocket(`ws://${location.hostname}:1880/palki`)
 
     this.connection.onmessage = function (event) {
-      console.log(event);
-    }
+   console.log(event);
+  }
 
-    this.connection.onopen = function (event) {
-      this.connectSuccess = true;
-    }
+this.connection.onopen = function (event) {
+    console.log(event)
+    console.log("Successfully connected to the echo websocket server...")
+  }
+
+
   },
   methods: {
     sendMessage(payload) {
