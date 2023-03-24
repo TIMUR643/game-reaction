@@ -4,7 +4,7 @@
       <h1>Проверка тренажера</h1>
     </v-row>
     <v-row no-gutters justify="center">
-      <v-btn class="very-big" :disabled="!availableSend" fab color="green darken-3" @click="send()">
+      <v-btn class="very-big" :disabled="!availableSend" fab color="green darken-3" @click="send(2500)">
         <v-icon class="very-big" color="white">
           mdi-play
         </v-icon>
