@@ -21,7 +21,7 @@
           <v-tab to="/play">Игра</v-tab>
           <v-tab to="/check">Проверка</v-tab>
           <v-tab to="/about">Инструкция</v-tab>
-          
+
         </v-tabs>
       </template>
     </v-app-bar>
@@ -37,7 +37,7 @@ export default {
   name: 'App',
   data: () => ({
     connection: null,
-    connectSuccess: false,
+    connectSuccess: false
   }),
   computed: {
     status() {
@@ -55,22 +55,26 @@ export default {
     }
   },
   created: function () {
-    this.connection = new WebSocket(`ws://${location.hostname}:1880/palki`)
+
+    let host = location.hostname;
+    //let host = '192.168.200.225';
+    this.connection = new WebSocket(`ws://${host}:1880/palki`)
 
     this.connection.onmessage = function (event) {
-   console.log(event);
-  }
+      console.log(event);
+    }
 
-this.connection.onopen = function (event) {
-    console.log(event)
-    console.log("Successfully connected to the echo websocket server...")
-  }
-
+    this.connection.onopen = function (event) {
+      console.log(event)
+      console.log("Successfully connected to the echo websocket server...")
+    }
+    this.connectSuccess = true
 
   },
   methods: {
     sendMessage(payload) {
       console.log(payload)
+      this.connection.send(payload);
     }
   }
 };
